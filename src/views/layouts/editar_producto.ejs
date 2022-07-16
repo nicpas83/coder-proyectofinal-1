@@ -1,0 +1,54 @@
+<%- include('../shared/header'); -%>
+
+  <div class="row">
+    <h1>Editar producto</h1>
+    <hr>
+    
+    <form id="ProductForm">
+      
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Nombre</label>
+          <input id="ProductId" name="id" type="hidden" value="<%- product.id %>">  
+          <input id="Nombre" name="nombre" type="text" value="<%- product.nombre %>" class="form-control" required>  
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Descripción</label>
+          <textarea id="Descripcion" name="descripcion" class="form-control" required><%- product.descripcion %></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Código</label>
+          <input id="Codigo" name="codigo" type="number" class="form-control" value="<%- product.codigo %>" required>  
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Foto</label>
+          <input id="Imagen" name="url_img" type="text" class="form-control" value="<%- product.url_img %>" required>  
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Precio</label>
+          <input id="Precio" name="precio" type="number" class="form-control" value="<%- product.precio %>"required>  
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Stock</label>
+          <input id="Stock" name="stock" type="number" class="form-control" value="<%- product.stock %>" required>  
+        </div>
+      </div>
+
+      <div class="mt-3 text-end">
+        <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
+
+    </form>
+
+
+  </div>
+
+  <script src="/client_edit_product.js"></script>
+
+  <%- include('../shared/footer'); -%>

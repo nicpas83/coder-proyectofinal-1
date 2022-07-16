@@ -1,0 +1,42 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <% if(products){ products.map( val=> { %>
+
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="<%= val.url_img %>" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= val.nombre %>
+                    </h5>
+                    <p class="card-text text-truncate">
+                        <%= val.descripcion %>
+                    </p>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item fs-5">Precio: <span class="badge text-bg-primary"> $ <%= val.precio
+                                    %></span></li>
+                        <li class="list-group-item fs-6">Stock: <span class="badge text-bg-success">
+                                <%= val.stock %>
+                            </span></li>
+                        <li class="list-group-item fs-6">Código: <%= val.codigo %> / ID: <%= val.id %>
+                        </li>
+                    </ul>
+
+                    <div class="text-end">
+                        <a href="/editar_producto/<%= val.id %>" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                        <button class="btn btn-danger eliminar-producto" value="<%= val.id %>" onclick="eliminar_producto(this)" ><i class="far fa-trash-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% }) %>
+
+            <% }else{ %>
+                <div class="alert alert-warning" role="alert">
+                    No hay productos en la lista.
+                </div>
+                <br>
+                <a href="/" class="btn btn-primary">Agregar Nuevo Producto</a>
+                <% } %>
+</div>

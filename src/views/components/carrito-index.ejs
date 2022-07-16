@@ -1,0 +1,72 @@
+<% if(carts){ %>
+
+    <% carts.map( cart=> { %>
+
+        <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+                <h5>Carrito #<%= cart.id %>
+                </h5>
+                <button class="btn btn-danger" value="<%= cart.id %>"
+                    onclick="eliminar_carrito(this)"><i class="far fa-trash-alt"></i> Eliminar carrito</a>
+            </div>
+            <div class="card-body">
+                <!-- FORMULARIO PARA AGREGAR PRODUCTOS AL CARRITO  -->
+                <form id="AddProductForm" class="row row-cols-sm-auto g-3 align-items-center mb-3" >
+                    <div class="col-12">
+                        <input id="CartId" name="carrito_id" type="hidden" value="<%= cart.id %>">
+                        <input id="ProductId" name="producto_id" type="number" class="form-control" placeholder="Ingrese ID del producto"
+                            required>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                    </div>
+                </form>
+                <!-- /FIN FORMULARIO PARA AGREGAR PRODUCTOS AL CARRITO  -->
+
+                <table class="table table-sm">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(cart.productos.length > 0 ){ %>
+                            
+                            <% cart.productos.map( product => { %>
+
+                            <tr>
+                                <td>
+                                    <%= product.codigo %>
+                                </td>
+                                <td>
+                                    <%= product.nombre %>
+                                </td>
+                                <td>
+                                    <%= product.precio %>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-danger" onclick="eliminar_producto_carrito(this)" data-cartId="<%= cart.id %>" data-productId="<%= product.id %>"><i class="far fa-trash-alt"></i></a>
+                                </td>
+
+                            </tr>
+                            <% }) %>
+                                <% }else{ %>
+                                    <tr>No Hay productos en el carrito</tr>
+                                    <% } %>
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <% }) %>
+
+            <% }else{ %>
+                <div class="alert alert-warning" role="alert">
+                    No hay carritos disponibles.
+                </div>
+                <% } %>
